@@ -56,22 +56,22 @@ function init() {
     const texturenucleus = loader.load('https://i.ibb.co/hcN2qXk/star-nc8wkw.jpg');
     //const texturenucleus  = loader.load('https://target-pool.com/wp-content/uploads/2021/02/main-image.svg');
     
-    //asteroides mas rapidos 
+    //asteroides mas rapidos //Cardano ADA
     //const textureStar = loader.load("https://i.ibb.co/ZKsdYSz/p1-g3zb2a.png");
     const textureStar = loader.load("https://s2.coinmarketcap.com/static/img/coins/200x200/2010.png");
     
-    ////asteroides lentos 1 
+    ////asteroides lentos 1 //ETH+BTC
     //const texture1 = loader.load("https://i.ibb.co/F8by6wW/p2-b3gnym.png");  
     const texture1 = loader.load("https://www.saratechnologies.com/images/ethereum-development-icon.png");
     
-    //asteroides lentos 2
+    //asteroides lentos 2 //ADAlogo
     //const texture2 = loader.load("https://i.ibb.co/yYS2yx5/p3-ttfn70.png");
     const texture2 = loader.load("https://aws1.discourse-cdn.com/business4/uploads/cardano/original/1X/f03daf240de012652f5c25659b3c17b3fe753542.png?v=6");
                                  
                                  
-    //asteroides lentos 3
+    //asteroides lentos 3 //BTC
     //const texture4 = loader.load("https://i.ibb.co/yWfKkHh/p4-avirap.png");
-    const texture4 = loader.load("https://st3.depositphotos.com/5906102/14454/v/600/depositphotos_144548091-stock-illustration-crypto-currency-bitcoin-golden-symbol.jpg");
+    const texture4 = loader.load("https://www.clipartmax.com/png/middle/213-2137673_cropped-btc-logo-bitcoin-faucet-icon.png");
 
 
     /*  Nucleus  */   
