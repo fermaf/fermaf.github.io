@@ -126,7 +126,7 @@ function init() {
     }
     scene.add(createStars(texture1, 20, 5)); //Tamaño y Cantidad
     scene.add(createStars(texture2, 20, 5));
-    scene.add(createStars(texture4, 70, 5));
+    scene.add(createStars(texture4, 40, 3));
 
 
     function randomPointSphere (radius) {
