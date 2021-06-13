@@ -19,7 +19,7 @@ animate();
 function init() {
     scene = new THREE.Scene();
 
-    camera = new THREE.PerspectiveCamera(55, window.innerWidth / window.innerHeight, 0.01, 1000)
+    camera = new THREE.PerspectiveCamera(30, window.innerWidth / window.innerHeight, 0.01, 1000)
     camera.position.set(0,0,230);
 
     const directionalLight = new THREE.DirectionalLight("#fff", 2);
@@ -41,42 +41,30 @@ function init() {
     //OrbitControl
     controls = new THREE.OrbitControls(camera, renderer.domElement);
     controls.autoRotate = true;
-    controls.autoRotateSpeed = 0.1;
+    controls.autoRotateSpeed = 1;
     controls.maxDistance = 350;
-    controls.minDistance = 250;
+    controls.minDistance = 150;
     controls.enablePan = false;
 
     const loader = new THREE.TextureLoader();
-    
-    //fondo
     const textureSphereBg = loader.load('https://i.ibb.co/4gHcRZD/bg3-je3ddz.jpg');
-    //const textureSphereBg = loader.load('https://target-pool.com/wp-content/uploads/2021/02/main-image.svg');
-    
-    //nucleo
-    //const texturenucleus = loader.load('https://i.ibb.co/hcN2qXk/star-nc8wkw.jpg');
     const texturenucleus  = loader.load('https://raw.githubusercontent.com/fermaf/fermaf.github.io/main/main-image.png');
+  //Cardano logo
+   const textureStar = loader.load("https://cdn4.iconfinder.com/data/icons/crypto-currency-and-coin-2/256/cardano_ada-512.png");
     
-    //asteroides mas rapidos //Cardano ADA
-    //const textureStar = loader.load("https://i.ibb.co/ZKsdYSz/p1-g3zb2a.png");
-    const textureStar = loader.load("https://s2.coinmarketcap.com/static/img/coins/200x200/2010.png");
-    
-    ////asteroides lentos 1 //ETH+BTC
-    const texture1 = loader.load("https://i.ibb.co/F8by6wW/p2-b3gnym.png");  
-    //const texture1 = loader.load("https://www.saratechnologies.com/images/ethereum-development-icon.png");
-    
-    //asteroides lentos 2 //ADAlogo
-    //const texture2 = loader.load("https://i.ibb.co/yYS2yx5/p3-ttfn70.png");
-    const texture2 = loader.load("https://aws1.discourse-cdn.com/business4/uploads/cardano/original/1X/f03daf240de012652f5c25659b3c17b3fe753542.png?v=6");
-                                 
-                                 
-    //asteroides lentos 3 //BTC
-    const texture4 = loader.load("https://i.ibb.co/yWfKkHh/p4-avirap.png");
-    //const texture4 = loader.load("https://www.clipartmax.com/png/middle/213-2137673_cropped-btc-logo-bitcoin-faucet-icon.png");
-
+  //BTC Logo
+  const texture1 = loader.load("https://s2.coinmarketcap.com/static/img/coins/64x64/1.png"); 
+  
+  //Individuo Digital
+    const texture2 = loader.load("https://lbry2.vanwanet.com/speech/2ec2d2a8c73acd36:f.png");
+  
+  //Persona con contrato
+    const texture4 = loader.load("https://i0.wp.com/www.technosap.com/wp-content/uploads/2015/07/what-is-contract-in-sap.png?resize=300%2C263&ssl=1");
+  
 
     /*  Nucleus  */   
     texturenucleus.anisotropy = 16;
-    let icosahedronGeometry = new THREE.IcosahedronGeometry(30, 10);
+    let icosahedronGeometry = new THREE.IcosahedronGeometry(50, 10);
     let lambertMaterial = new THREE.MeshPhongMaterial({ map: texturenucleus });
     nucleus = new THREE.Mesh(icosahedronGeometry, lambertMaterial);
     scene.add(nucleus);
@@ -99,7 +87,7 @@ function init() {
     for (let i = 0; i < 50; i++) {
         let particleStar = randomPointSphere(150); 
 
-        particleStar.velocity = THREE.MathUtils.randInt(50, 200);
+        particleStar.velocity = THREE.MathUtils.randInt(100, 300);
 
         particleStar.startX = particleStar.x;
         particleStar.startY = particleStar.y;
@@ -108,10 +96,10 @@ function init() {
         starsGeometry.vertices.push(particleStar);
     }
     let starsMaterial = new THREE.PointsMaterial({
-        size: 5,
+        size: 30,
         color: "#ffffff",
         transparent: true,
-        opacity: 0.8,
+        opacity: 8,
         map: textureStar,
         blending: THREE.AdditiveBlending,
     });
@@ -136,9 +124,9 @@ function init() {
         }
         return new THREE.Points(pointGeometry, pointMaterial);
     }
-    scene.add(createStars(texture1, 15, 20));   
-    scene.add(createStars(texture2, 5, 5));
-    scene.add(createStars(texture4, 7, 5));
+    scene.add(createStars(texture1, 20, 5)); //Tamaño y Cantidad
+    scene.add(createStars(texture2, 20, 5));
+    scene.add(createStars(texture4, 70, 5));
 
 
     function randomPointSphere (radius) {
