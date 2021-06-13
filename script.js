@@ -61,8 +61,8 @@ function init() {
     const textureStar = loader.load("https://s2.coinmarketcap.com/static/img/coins/200x200/2010.png");
     
     ////asteroides lentos 1 //ETH+BTC
-    //const texture1 = loader.load("https://i.ibb.co/F8by6wW/p2-b3gnym.png");  
-    const texture1 = loader.load("https://www.saratechnologies.com/images/ethereum-development-icon.png");
+    const texture1 = loader.load("https://i.ibb.co/F8by6wW/p2-b3gnym.png");  
+    //const texture1 = loader.load("https://www.saratechnologies.com/images/ethereum-development-icon.png");
     
     //asteroides lentos 2 //ADAlogo
     //const texture2 = loader.load("https://i.ibb.co/yYS2yx5/p3-ttfn70.png");
@@ -70,8 +70,8 @@ function init() {
                                  
                                  
     //asteroides lentos 3 //BTC
-    //const texture4 = loader.load("https://i.ibb.co/yWfKkHh/p4-avirap.png");
-    const texture4 = loader.load("https://www.clipartmax.com/png/middle/213-2137673_cropped-btc-logo-bitcoin-faucet-icon.png");
+    const texture4 = loader.load("https://i.ibb.co/yWfKkHh/p4-avirap.png");
+    //const texture4 = loader.load("https://www.clipartmax.com/png/middle/213-2137673_cropped-btc-logo-bitcoin-faucet-icon.png");
 
 
     /*  Nucleus  */   
