@@ -49,8 +49,8 @@ function init() {
     const loader = new THREE.TextureLoader();
     
     //fondo
-    //const textureSphereBg = loader.load('https://i.ibb.co/4gHcRZD/bg3-je3ddz.jpg');
-    const textureSphereBg = loader.load('https://target-pool.com/wp-content/uploads/2021/02/main-image.svg');
+    const textureSphereBg = loader.load('https://i.ibb.co/4gHcRZD/bg3-je3ddz.jpg');
+    //const textureSphereBg = loader.load('https://target-pool.com/wp-content/uploads/2021/02/main-image.svg');
     
     //nucleo
     //const texturenucleus = loader.load('https://i.ibb.co/hcN2qXk/star-nc8wkw.jpg');
