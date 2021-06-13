@@ -49,12 +49,12 @@ function init() {
     const loader = new THREE.TextureLoader();
     
     //fondo
-    const textureSphereBg = loader.load('https://i.ibb.co/4gHcRZD/bg3-je3ddz.jpg');
-    
+    //const textureSphereBg = loader.load('https://i.ibb.co/4gHcRZD/bg3-je3ddz.jpg');
+    const textureSphereBg = loader.load('https://target-pool.com/wp-content/uploads/2021/02/main-image.svg');
     
     //nucleo
-    //const texturenucleus = loader.load('https://i.ibb.co/hcN2qXk/star-nc8wkw.jpg');
-    const texturenucleus  = loader.load('https://target-pool.com/wp-content/uploads/2021/02/main-image.svg');
+    const texturenucleus = loader.load('https://i.ibb.co/hcN2qXk/star-nc8wkw.jpg');
+    //const texturenucleus  = loader.load('https://target-pool.com/wp-content/uploads/2021/02/main-image.svg');
     
     //asteroides mas rapidos 
     //const textureStar = loader.load("https://i.ibb.co/ZKsdYSz/p1-g3zb2a.png");
@@ -66,7 +66,7 @@ function init() {
     
     //asteroides lentos 2
     //const texture2 = loader.load("https://i.ibb.co/yYS2yx5/p3-ttfn70.png");
-    const texture2 = loader.load("https://www.google.com/search?q=ada%20coin&tbm=isch&hl=en-US&tbs=ic:trans&sa=X&ved=0CAMQpwVqFwoTCLiCqbKolfECFQAAAAAdAAAAABAC&biw=1905&bih=1008#imgrc=UrNSj1oyVLkPtM");
+    const texture2 = loader.load("https://aws1.discourse-cdn.com/business4/uploads/cardano/original/1X/f03daf240de012652f5c25659b3c17b3fe753542.png?v=6");
                                  
                                  
     //asteroides lentos 3
