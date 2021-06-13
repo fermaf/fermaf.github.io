@@ -19,7 +19,7 @@ animate();
 function init() {
     scene = new THREE.Scene();
 
-    camera = new THREE.PerspectiveCamera(30, window.innerWidth / window.innerHeight, 0.01, 1000)
+    camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.01, 1000)
     camera.position.set(0,0,230);
 
     const directionalLight = new THREE.DirectionalLight("#fff", 2);
@@ -42,8 +42,8 @@ function init() {
     controls = new THREE.OrbitControls(camera, renderer.domElement);
     controls.autoRotate = true;
     controls.autoRotateSpeed = 1;
-    controls.maxDistance = 350;
-    controls.minDistance = 150;
+    controls.maxDistance = 750;
+    controls.minDistance = 100;
     controls.enablePan = false;
 
     const loader = new THREE.TextureLoader();
@@ -83,8 +83,9 @@ function init() {
 
     /*    Moving Stars   */
     let starsGeometry = new THREE.Geometry();
-
-    for (let i = 0; i < 50; i++) {
+    
+    // QTY de asyeroides (ADAs) = 30)
+    for (let i = 0; i < 30; i++) {
         let particleStar = randomPointSphere(150); 
 
         particleStar.velocity = THREE.MathUtils.randInt(100, 300);
@@ -96,7 +97,7 @@ function init() {
         starsGeometry.vertices.push(particleStar);
     }
     let starsMaterial = new THREE.PointsMaterial({
-        size: 30,
+        size: 20,
         color: "#ffffff",
         transparent: true,
         opacity: 8,
