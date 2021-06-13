@@ -53,8 +53,8 @@ function init() {
     const textureSphereBg = loader.load('https://target-pool.com/wp-content/uploads/2021/02/main-image.svg');
     
     //nucleo
-    const texturenucleus = loader.load('https://i.ibb.co/hcN2qXk/star-nc8wkw.jpg');
-    //const texturenucleus  = loader.load('https://target-pool.com/wp-content/uploads/2021/02/main-image.svg');
+    //const texturenucleus = loader.load('https://i.ibb.co/hcN2qXk/star-nc8wkw.jpg');
+    const texturenucleus  = loader.load('https://raw.githubusercontent.com/fermaf/fermaf.github.io/main/main-image.png');
     
     //asteroides mas rapidos //Cardano ADA
     //const textureStar = loader.load("https://i.ibb.co/ZKsdYSz/p1-g3zb2a.png");
