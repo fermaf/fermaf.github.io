@@ -12,9 +12,35 @@
   <h1>Reconocimiento de personas en línea</h1>
   <video id="webcam" autoplay muted playsinline width="640" height="480"></video>
   <div id="results"></div>
-  
-<script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd"></script>
-<script src="script2.js"></script>
-
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
+  <script src="script2.js"></script>
+  <script>
+    // Mostrar resultados
+    function displayResults(predictions) {
+      const resultsElement = document.getElementById("results");
+      // Limpiar resultados anteriores
+      resultsElement.innerHTML = "";
+      // Iterar por las predicciones
+      for (let i = 0; i < predictions.shape[1]; i++) {
+        // Obtener la confianza de la predicción
+        const confidence = predictions.get([0, i, 0]);
+        // Si la confianza es menor a 0.5, no se considera como detección de persona
+        if (confidence < 0.5) {
+          continue;
+        }
+        // Obtener la posición de la detección
+        const position = predictions.get([0, i, 1, 0]);
+        // Crear un nuevo elemento HTML con el icono de persona
+        const iconElement = document.createElement("i");
+        iconElement.className = "fas fa-user";
+        iconElement.style.position = "absolute";
+        iconElement.style.left = position[1] * 100 + "%";
+        iconElement.style.top = position[0] * 100 + "%";
+        iconElement.style.transform = "translate(-50%, -50%)";
+        // Agregar el elemento al contenedor de resultados
+        resultsElement.appendChild(iconElement);
+      }
+    }
+  </script>
 </body>
 </html>
