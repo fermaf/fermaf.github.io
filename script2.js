@@ -8,7 +8,9 @@ async function setupWebcam() {
 // Cargar el modelo
 let model;
 async function loadModel() {
-  model = await tf.loadGraphModel('URL_DEL_MODELO');
+  //model = await tf.loadGraphModel('URL_DEL_MODELO');
+  model = await tf.loadLayersModel('https://storage.googleapis.com/tfjs-models/tfjs/mobilenet_v1_0.25_224/model.json');
+
 }
 
 // Detectar personas
