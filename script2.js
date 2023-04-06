@@ -16,21 +16,15 @@ async function loadModel() {
 // Detectar personas
 async function detectPersons() {
   const video = document.getElementById("webcam");
-  const frame = tf.browser.fromPixels(video);
+  const frame = tf.browser.fromPixels(video).resizeNearestNeighbor([224, 224]).toFloat().expandDims(0);
 
-  // Asegúrate de que el tamaño de entrada sea compatible con el modelo que estás utilizando
-  const resizedFrame = tf.image.resizeBilinear(frame, [224, 224]);
-  const normalizedFrame = resizedFrame.div(tf.scalar(255));
-
-  const predictions = model.predict(normalizedFrame);
+  const predictions = model.predict(frame);
 
   // Procesar y visualizar los resultados
   displayResults(predictions);
 
   // Liberar recursos
   frame.dispose();
-  resizedFrame.dispose();
-  normalizedFrame.dispose();
 
   // Programar el siguiente fotograma para el análisis
   requestAnimationFrame(detectPersons);
