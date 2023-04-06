@@ -1,3 +1,6 @@
+// Importar el modelo COCO-SSD
+import * as cocoSsd from '@tensorflow-models/coco-ssd';
+
 // Configurar la cámara web
 async function setupWebcam() {
   const video = document.getElementById("webcam");
@@ -8,29 +11,23 @@ async function setupWebcam() {
 // Cargar el modelo
 let model;
 async function loadModel() {
-  //model = await tf.loadGraphModel('URL_DEL_MODELO');
-  model = await tf.loadLayersModel('https://storage.googleapis.com/tfjs-models/tfjs/mobilenet_v1_0.25_224/model.json');
-
+  model = await cocoSsd.load();
 }
 
 // Detectar personas
 async function detectPersons() {
   const video = document.getElementById("webcam");
-  const frame = tf.browser.fromPixels(video).resizeNearestNeighbor([224, 224]).toFloat().expandDims(0);
+  const predictions = await model.detect(video);
 
-  const predictions = model.predict(frame);
+  // Filtrar las predicciones para mostrar solo las personas
+  const personPredictions = predictions.filter(prediction => prediction.class === 'person');
 
   // Procesar y visualizar los resultados
-  displayResults(predictions);
-
-  // Liberar recursos
-  frame.dispose();
+  displayResults(personPredictions);
 
   // Programar el siguiente fotograma para el análisis
   requestAnimationFrame(detectPersons);
 }
-
-
 
 // Mostrar resultados
 function displayResults(predictions) {
