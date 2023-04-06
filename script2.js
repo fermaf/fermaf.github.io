@@ -15,22 +15,27 @@ async function loadModel() {
 
 // Detectar personas
 async function detectPersons() {
-    // Asegúrate de haber cargado el modelo de MobileNet previamente
-    const input = tf.browser.fromPixels(video);
-    const resizedInput = tf.image.resizeBilinear(input, [224, 224]);
-    const normalizedInput = resizedInput.div(tf.scalar(255));
+  const video = document.getElementById("webcam");
+  const frame = tf.browser.fromPixels(video);
 
-    // Ejecuta la inferencia usando la función 'predict'
-    const prediction = model.predict(normalizedInput);
+  // Asegúrate de que el tamaño de entrada sea compatible con el modelo que estás utilizando
+  const resizedFrame = tf.image.resizeBilinear(frame, [224, 224]);
+  const normalizedFrame = resizedFrame.div(tf.scalar(255));
 
-    // Procesa los resultados de la predicción aquí
-    // ...
+  const predictions = model.predict(normalizedFrame);
 
-    // Limpia los tensores intermedios
-    input.dispose();
-    resizedInput.dispose();
-    normalizedInput.dispose();
+  // Procesar y visualizar los resultados
+  displayResults(predictions);
+
+  // Liberar recursos
+  frame.dispose();
+  resizedFrame.dispose();
+  normalizedFrame.dispose();
+
+  // Programar el siguiente fotograma para el análisis
+  requestAnimationFrame(detectPersons);
 }
+
 
 
 // Mostrar resultados
