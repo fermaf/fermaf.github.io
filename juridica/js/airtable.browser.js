@@ -3751,3 +3751,7 @@ var Airtable = /** @class */ (function () {
 module.exports = Airtable;
 
 },{"./airtable_error":2,"./base":3,"./record":15,"./table":17}]},{},["airtable"]);
+// Al final del archivo airtable.browser.js, agrega lo siguiente: (me lo dijo Claude)
+if (typeof window !== 'undefined') {
+    window.Airtable = require('airtable');
+}
