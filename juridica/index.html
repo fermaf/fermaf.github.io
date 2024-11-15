@@ -24,58 +24,48 @@
             transition: transform 0.3s ease;
         }
     </style>
-    <!-- Asegúrate de que el script airtable.browser.js se carga correctamente -->
-    <script src="juridica/js/airtable.browser.js"></script>
 </head>
 <body class="bg-gray-50">
     <!-- Contenido de la página -->
     <!-- ... -->
+    <form id="contactForm" action="https://formspree.io/f/xjkvrzan" method="POST">
+        <input type="text" id="nombre" name="nombre" placeholder="Nombre" required>
+        <input type="email" id="email" name="email" placeholder="Email" required>
+        <textarea id="mensaje" name="mensaje" placeholder="Mensaje" required></textarea>
+        <button type="submit">Enviar</button>
+    </form>
 
     <script>
-        // Confirmar si Airtable está disponible
-        console.log("Airtable:", typeof Airtable);
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault(); // Evitar el envío predeterminado del formulario
 
-        // Asegúrate de que el objeto Airtable está definido antes de usarlo
-        if (typeof Airtable !== 'undefined') {
-            // Configurar la conexión a Airtable usando el token de acceso y el BASE_ID
-            Airtable.configure({
-                //Porfavor no me hackeen la tabla... en modo aprendiendo mf
-                // Please dont hack my table xd  (im leraniing...)
-                apiKey: 'patLwQXL7ymklv6vq.98a3e37b6c67bfdd53be19b268cadf9a84381dac7f6455f1f8285cbec13cb8ba' // Reemplaza con tu token
+            // Capturar los valores del formulario
+            const nombre = document.getElementById('nombre').value;
+            const email = document.getElementById('email').value;
+            const mensaje = document.getElementById('mensaje').value;
+
+            // Enviar los datos al webhook
+            fetch(e.target.action, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    nombre: nombre,
+                    email: email,
+                    mensaje: mensaje
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert('Gracias por tu mensaje. Nos pondremos en contacto contigo pronto.');
+                e.target.reset(); // Limpiar el formulario después de enviar
+            })
+            .catch(error => {
+                console.error('Error al enviar el mensaje:', error);
+                alert('Hubo un problema al enviar tu mensaje. Inténtalo de nuevo.');
             });
-            const base = Airtable.base('app96RA8e33k4Jr7c'); // Reemplaza con tu BASE_ID
-
-            // Capturar el evento de envío del formulario
-            document.querySelector('form').addEventListener('submit', function(e) {
-                e.preventDefault(); // Evitar el envío predeterminado del formulario
-
-                // Capturar los valores del formulario
-                const nombre = document.getElementById('nombre').value;
-                const email = document.getElementById('email').value;
-                const mensaje = document.getElementById('mensaje').value;
-
-                // Enviar los datos a Airtable
-                base('contacto').create([
-                    {
-                        fields: {
-                            "Nombre": nombre,
-                            "email": email,
-                            "mensaje": mensaje
-                        }
-                    }
-                ], function(err, records) {
-                    if (err) {
-                        console.error('Error al conectar con Airtable:', err);
-                        alert('Hubo un problema al enviar tu mensaje. Inténtalo de nuevo.');
-                        return;
-                    }
-                    alert('Gracias por tu mensaje. Nos pondremos en contacto contigo pronto.');
-                    e.target.reset(); // Limpiar el formulario después de enviar
-                });
-            });
-        } else {
-            console.error('Airtable no está definido. Asegúrate de que el script airtable.browser.js se ha cargado correctamente.');
-        }
+        });
     </script>
 </body>
 </html>
