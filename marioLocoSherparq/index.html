@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- Asegura rutas relativas correctas en GitHub Pages (proyectos bajo /usuario/repositorio/) -->
+  <base href="./">
+  <link rel="icon" href="logo.jpg">
+  <title>SHERPARQ — Arquitectura & Construcción</title>
+  <meta name="description" content="SHERPARQ: arquitectura y construcción para industria y ciudad. Gestión de permisos, coordinación de especialidades, obras civiles y recepción de proyectos.">
+  <style>
+    :root{
+      --sepia-900:#2b2620;
+      --sepia-800:#3a332b;
+      --sepia-700:#4a4137;  
+      --sepia-600:#5c5246;  
+      --sepia-500:#8c7a66;
+      --sepia-300:#cdb89f;
+      --sepia-200:#e3d7c6;
+      --sepia-100:#f2eadf;
+      --gold-500:#c7a969;
+      --ink:#0e0d0c;
+      --radius:20px;
+    }
+    html,body{height:100%;}
+    body{
+      margin:0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      background: radial-gradient(1200px 800px at 80% -10%, rgba(199,169,105,.15), transparent), var(--sepia-900);
+      color:var(--sepia-100);
+      line-height:1.6;
+      -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
+    }
+    .wrap{max-width:1100px; margin-inline:auto; padding: clamp(16px, 4vw, 32px);}    
+    header{position:sticky; top:0; z-index:50; backdrop-filter: blur(8px); background: color-mix(in oklab, var(--sepia-900) 85%, transparent); border-bottom:1px solid color-mix(in oklab, var(--sepia-500), transparent 60%);}    
+    .nav{display:flex; align-items:center; justify-content:space-between; gap:16px;}
+    .brand{display:flex; align-items:center; gap:14px; text-decoration:none; color:inherit}
+    .brand img{height:44px; width:auto; filter: drop-shadow(0 2px 8px rgba(0,0,0,.35)); border-radius: 50%;}
+    .brand span{font-weight:700; letter-spacing:.14em; text-transform:uppercase}
+    .nav a{color:var(--sepia-200); text-decoration:none; padding:8px 10px; border-radius:999px; transition:opacity .2s ease, background .3s ease; font-size:.95rem}
+    .nav a:hover{background:color-mix(in oklab, var(--sepia-800), transparent 35%); color:var(--sepia-100)}
+    .hero{display:grid; grid-template-columns:1.2fr .8fr; gap: clamp(18px, 4vw, 48px); align-items:center; padding-block: clamp(40px, 10vh, 120px);}    
+    .kicker{letter-spacing:.35em; text-transform:uppercase; color:var(--sepia-300); font-size:.8rem}
+    h1{font-size: clamp(34px, 6vw, 64px); line-height:1.05; margin:.2em 0 .4em; font-weight:800;}
+    .lead{font-size: clamp(16px, 2.2vw, 20px); color:var(--sepia-200)}
+    .hero-card{border:1px solid color-mix(in oklab, var(--sepia-500), transparent 35%); border-radius: var(--radius); padding:24px; background:linear-gradient(180deg, color-mix(in oklab, var(--sepia-800), transparent 20%) 0, color-mix(in oklab, var(--sepia-900), transparent 5%) 100%);}    
+    .chips{display:flex; flex-wrap:wrap; gap:8px; margin-top:18px}
+    .chip{border:1px solid color-mix(in oklab, var(--sepia-500), transparent 40%); padding:6px 10px; border-radius:999px; font-size:.85rem; color:var(--sepia-200)}
+    section{padding-block: clamp(48px, 8vh, 96px); border-top:1px solid color-mix(in oklab, var(--sepia-500), transparent 70%);}    
+    h2{font-size: clamp(22px, 3.2vw, 36px); margin:0 0 14px;}
+    .muted{color:var(--sepia-200)}
+    .grid{display:grid; gap: clamp(12px, 2.4vw, 28px);}    
+    .grid.cols-3{grid-template-columns: repeat(3, minmax(0,1fr));}
+    .grid.cols-2{grid-template-columns: repeat(2, minmax(0,1fr));}
+    @media (max-width: 900px){
+      .hero{grid-template-columns:1fr;}
+      .grid.cols-3{grid-template-columns:1fr;}
+      .grid.cols-2{grid-template-columns:1fr;}
+    }
+    .card{border:1px solid color-mix(in oklab, var(--sepia-500), transparent 40%); border-radius: var(--radius); padding:22px; background:linear-gradient(180deg, color-mix(in oklab, var(--sepia-800), transparent 12%) 0, color-mix(in oklab, var(--sepia-900), transparent 0%) 100%); transition: transform .25s ease, box-shadow .25s ease}
+    .card:hover{transform: translateY(-2px); box-shadow: 0 18px 50px rgba(0,0,0,.25)}
+    .card h3{margin:0 0 6px; font-size:1.15rem}
+    .card p{margin:0; color:var(--sepia-200)}
+    .list{display:grid; gap:10px;}
+    .list li{list-style:none; position:relative; padding-left:18px; color:var(--sepia-200)}
+    .list li::before{content:""; position:absolute; left:0; top:.7em; width:8px; height:8px; border-radius:50%; background:var(--gold-500); box-shadow:0 0 0 4px color-mix(in oklab, var(--gold-500), transparent 75%)}
+    .cta{display:flex; flex-wrap:wrap; gap:12px; margin-top:22px}
+    .btn{appearance:none; border:1px solid color-mix(in oklab, var(--sepia-500), transparent 25%); background:linear-gradient(180deg, color-mix(in oklab, var(--sepia-700), transparent 10%), color-mix(in oklab, var(--sepia-800), transparent 0%)); color:var(--sepia-100); padding:10px 16px; border-radius:999px; text-decoration:none; font-weight:600; letter-spacing:.01em; transition: filter .2s ease, transform .08s ease}
+    .btn:hover{filter: brightness(1.08)}
+    .btn:active{transform: translateY(1px)}
+    .btn--ghost{background:transparent}
+    footer{border-top:1px solid color-mix(in oklab, var(--sepia-500), transparent 70%); color:var(--sepia-200);}
+    .foot{display:flex; justify-content:space-between; gap:16px; align-items:center;}
+    .foot small{opacity:.8}
+    .ring{position:relative;}
+    .ring::after{content:""; position:absolute; inset:-24px; border-radius:calc(var(--radius) + 24px); border:1px dashed color-mix(in oklab, var(--sepia-500), transparent 65%); pointer-events:none;}
+    .mono{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace; letter-spacing:.02em}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap nav">
+      <a class="brand" href="#inicio" aria-label="Volver al inicio">
+        <img src="logo.jpg" alt="Logo SHERPARQ" />
+        <span>SHERPARQ</span>
+      </a>
+      <nav class="mono">
+        <a href="#que-hacemos">Servicios</a>
+        <a href="#experiencia">Experiencia</a>
+        <a href="#enfoque">Enfoque</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="inicio" class="wrap">
+    <section class="hero">
+      <div>
+        <div class="kicker">Arquitectura · Construcción · Permisos</div>
+        <h1>Soluciones precisas para entornos <span style="color:var(--gold-500);">industriales</span> y ciudad</h1>
+        <p class="lead">Estudio especializado en gestión de permisos, coordinación de especialidades y obras civiles para ampliaciones, regularizaciones y nuevas infraestructuras. Diseñamos con claridad, ejecutamos con rigor.</p>
+        <div class="chips mono">
+          <span class="chip">>45.000 m² en permisos</span>
+          <span class="chip">Minería y procesos</span>
+          <span class="chip">Arquitectura Industrial</span>
+          <span class="chip">Paisajismo & Urbano</span>
+          <span class="chip">Modelos 3D & Ortofotos</span>
+        </div>
+        <div class="cta">
+          <a class="btn" href="#contacto">Agendar conversación</a>
+          <a class="btn btn--ghost" href="#experiencia">Ver experiencia</a>
+        </div>
+      </div>
+      <div class="hero-card ring">
+        <h3 style="margin-top:0">Qué resolvemos</h3>
+        <ul class="list">
+          <li>Gestión integral de permisos ante DOM y organismos sectoriales.</li>
+          <li>Ampliaciones y modificaciones en instalaciones industriales y de apoyo.</li>
+          <li>Recepciones definitivas — parciales y totales — de obras.</li>
+          <li>Levantamientos georreferenciados, ortofotografías y modelos 3D.</li>
+          <li>Coordinación civil–estructural, arquitectura y especialidades.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="que-hacemos">
+      <h2>Servicios</h2>
+      <div class="grid cols-3">
+        <div class="card">
+          <h3>Permisos & Recepciones</h3>
+          <p>Expansiones, regularizaciones y certificaciones. Enfoque en cumplimiento normativo y continuidad operacional.</p>
+        </div>
+        <div class="card">
+          <h3>Arquitectura Industrial</h3>
+          <p>Edificaciones de proceso y soporte: bodegas, talleres, salas técnicas, cabinas de control, áreas de bienestar.</p>
+        </div>
+        <div class="card">
+          <h3>Ingeniería aplicada</h3>
+          <p>Coordinación civil–estructural y especialidades. Estudios de carga de ocupación y flujos. Estandarización de patios.</p>
+        </div>
+        <div class="card">
+          <h3>Urbano & Paisajismo</h3>
+          <p>Diseño de espacios exteriores, riego y trazados viales internos. Integración con comunidad y medio ambiente.</p>
+        </div>
+        <div class="card">
+          <h3>Captura & Modelación</h3>
+          <p>Topografía, ortofotos y modelos 3D de grandes superficies para planificación y gestión de activos.</p>
+        </div>
+        <div class="card">
+          <h3>Visualización & Procedimientos</h3>
+          <p>Animaciones técnicas 3D y documentación operativa para montaje, mantención y seguridad.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="experiencia">
+      <h2>Experiencia</h2>
+      <p class="muted">Síntesis transversal de proyectos desarrollados en las últimas décadas en entornos de gran escala, con cláusulas de reserva para mandantes.</p>
+      <div class="grid cols-2">
+        <div class="card">
+          <h3>Industrial</h3>
+          <ul class="list">
+            <li>Ampliaciones y modificaciones de plantas de proceso y apoyo.</li>
+            <li>Regularización y certificación de instalaciones existentes.</li>
+            <li>Bodegas de sustancias reguladas y sistemas de seguridad.</li>
+            <li>Cabinas y salas de control para operación remota.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Infraestructura & Urbano</h3>
+          <ul class="list">
+            <li>Urbanización de patios operacionales y circulación interna.</li>
+            <li>Centros de entrenamiento y bienestar para personal.</li>
+            <li>Sistemas de descarga, control ambiental y flujo de personas.</li>
+            <li>Equipamientos deportivos y recreativos vinculados a faenas.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="enfoque">
+      <h2>Enfoque</h2>
+      <div class="grid cols-3">
+        <div class="card"><h3>Precisión</h3><p>Planos y modelos consistentes, trazabilidad documental y coordinación temprana con especialidades.</p></div>
+        <div class="card"><h3>Continuidad</h3><p>Diseño orientado a la operación: secuencias constructivas, fases de intervención y riesgos controlados.</p></div>
+        <div class="card"><h3>Compliance</h3><p>Normativa local, oficios y estándares sectoriales integrados desde la primera iteración del proyecto.</p></div>
+      </div>
+    </section>
+
+    <section id="contacto">
+      <h2>Contacto</h2>
+      <p class="muted">Conversemos un prediagnóstico en 20 minutos. Compartimos NDA cuando sea necesario.</p>
+      <form class="grid cols-2 card" onsubmit="return sendMail(event)">
+        <label>Nombre<br><input required name="nombre" class="inp"/></label>
+        <label>Email<br><input required type="email" name="email" class="inp"/></label>
+        <label style="grid-column:1/-1">Mensaje<br><textarea name="mensaje" rows="4" class="inp"></textarea></label>
+        <div class="cta" style="grid-column:1/-1">
+          <button class="btn" type="submit">Enviar</button>
+          <a class="btn btn--ghost" href="#inicio">Volver arriba</a>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap foot">
+      <small>© <span id="y"></span> SHERPARQ S.P.A.</small>
+      <small class="mono">Minimal · Sepia · Hi‑Tech</small>
+    </div>
+  </footer>
+
+  <script>
+    const y=document.getElementById('y'); y.textContent=new Date().getFullYear();
+    function sendMail(e){
+      e.preventDefault();
+      const f=new FormData(e.target);
+      const subj=encodeURIComponent('Contacto sitio SHERPARQ — '+f.get('nombre'));
+      const body=encodeURIComponent(
+        `Nombre: ${f.get('nombre')}\nEmail: ${f.get('email')}\n\n${f.get('mensaje')}`
+      );
+      window.location.href=`mailto:contacto@sherparq.cl?subject=${subj}&body=${body}`;
+      return false;
+    }
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click',ev=>{
+        const id=a.getAttribute('href');
+        if(id.length>1){ev.preventDefault(); document.querySelector(id)?.scrollIntoView({behavior:'smooth', block:'start'});}
+      });
+    });
+  </script>
+
+  <!-- Instrucciones de despliegue — GitHub Pages
+    ✅ Preparación
+      - Guarda este archivo como index.html en la raíz del repositorio.
+      - Copia el logo (la imagen adjunta) como "logo.jpg" en la misma carpeta.
+    🚀 Publicación en GitHub Pages (Project Pages)
+      1) Crea un repo, sube index.html y logo.jpg (main branch).
+      2) En Settings ▸ Pages: "Build and deployment" → Source: Deploy from a branch.
+      3) Branch: main ▸ /root. Guarda.
+      4) Espera el deploy y abre la URL /usuario/repositorio/.
+      *Este archivo ya incluye <base href="./"> para que los recursos funcionen en subrutas.*
+    Opcional
+      - Agregar CNAME (en la raíz) si usarás dominio propio.
+      - Reemplazar el mailto del formulario por un servicio externo (Formspree/Netlify Forms) si no quieres depender del cliente de correo.
+  -->
+</body>
+</html>
