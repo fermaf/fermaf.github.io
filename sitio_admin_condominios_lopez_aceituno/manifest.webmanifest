@@ -1,0 +1,15 @@
+{
+  "name": "Administración de Condominios - López Aceituno",
+  "short_name": "AdminCondo",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f6f0e8",
+  "theme_color": "#8a6a4b",
+  "icons": [
+    {
+      "src": "assets/img/logo.svg",
+      "sizes": "256x256",
+      "type": "image/svg+xml"
+    }
+  ]
+}
